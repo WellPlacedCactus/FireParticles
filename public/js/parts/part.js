@@ -8,6 +8,11 @@ const generateImage = (r, h) => {
   image.width = 500;
   image.height = 500;
 
+  // ----------------------------------------------- draw shadow
+  imageContext.shadowColor = `hsl(${h}, 100%, 50%)`;
+  imageContext.shadowBlur = r * 2;
+
+  // ----------------------------------------------- draw square
   imageContext.beginPath();
   imageContext.rect(
     image.width / 2 - r,
@@ -16,22 +21,7 @@ const generateImage = (r, h) => {
     r * 2
   );
   imageContext.closePath();
-
-  // imageContext.beginPath();
-  // imageContext.arc(
-  //   image.width / 2,
-  //   image.height / 2,
-  //   r,
-  //   0,
-  //   Math.PI * 2
-  // );
-  // imageContext.closePath();
-
-  imageContext.shadowColor = `hsl(${h}, 100%, 50%)`;
-  imageContext.shadowBlur = r * 2;
-
   imageContext.fillStyle = `hsl(${h}, 100%, 50%)`;
-  // imageContext.fillStyle = 'white';
   imageContext.fill();
 
   return image;
@@ -40,7 +30,7 @@ const generateImage = (r, h) => {
 const CACHE = [];
 
 for (let h = 0; h < 60; h++) {
-  CACHE[h] = generateImage(15, h);
+  CACHE[h] = generateImage(20, h); // 15
 }
 
 // ----------------------------------------------- class
